@@ -3,7 +3,7 @@
 
 #include "student.h"
 
-void calculateResult(struct Students *s);
-void assignGrade(struct Students *s);
+void computeResult(Student *s);
+void assignGrade(Student *s);
 
 #endif

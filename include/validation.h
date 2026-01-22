@@ -3,8 +3,8 @@
 
 #include "student.h"
 
-int isValidID(char id[], struct Students s[], int count);
+int isValidID(char id[], Student students[], int count);
 int isValidName(char name[]);
-int isValidMarks(int m);
+int isValidMarks(int marks[]);
 
 #endif

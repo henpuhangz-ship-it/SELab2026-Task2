@@ -1,17 +1,96 @@
+# Test Plan
+
 Project Name: Student Result Processing System
-Written By: Lamhen, 24mcmt12
-Description: Processes student marks from a file, computes total, percentage, grade, and displays class statistics
-Browser: Firefox
+Version: 2.0
+Test Environment: VS Code, input through text file
 
+-----------------------------------------------------------------------------
 
- | Test # | Date   | Action            | Input                          | Expected Results                             | Actual Results                        | Pass? |
-| ------ | ------ | ----------------- | ------------------------------ | -------------------------------------------- | ------------------------------------- | ----- |
-| 1      | 20-Jan | Read student file | `students.txt` with valid data | Program reads all students without error     | Program reads all students            | Pass  |
-| 2      | 20-Jan | Validate ID       | Student ID: `STU01`            | Valid                                        | Valid                                 | Pass  |
-| 3      | 20-Jan | Validate ID       | Student ID: `STU@01`           | Invalid                                      | Invalid                               | Pass  |
-| 4      | 20-Jan | Validate Name     | Name: `Alice`                  | Valid                                        | Valid                                 | Pass  |
-| 5      | 20-Jan | Validate Name     | Name: `Al1ce`                  | Invalid                                      | Invalid                               | Pass  |
-| 6      | 20-Jan | Validate Marks    | Marks: `105`                   | Invalid                                      | Invalid                               | Pass  |
-| 7      | 20-Jan | Compute Result    | Marks: `80, 90, 85, 75, 95`    | Total: 425, Percentage: 85, Grade: A+        | Total: 425, Percentage: 85, Grade: A+ | Pass  |
-| 8      | 20-Jan | Display Report    | N/A                            | Table with student info                      | Table displayed correctly             | Pass  |
-| 9      | 20-Jan | Class Statistics  | Multiple students              | Correct average, highest/lowest, grade count | Correct                               | Pass  |
+Test Case 1
+
+Test ID: TC-01
+Functionality Tested: Student ID validation (`isValidID`)
+Input:
+Student ID = `24mcmt14`, existing student list contains unique IDs
+
+Expected Output:
+The function should accept the ID since it is alphanumeric and not duplicated.
+
+Actual Output:
+The ID was accepted and the student record was processed successfully.
+
+Test Report:
+Pass. The function correctly validated a proper student ID.
+
+-----------------------------------------------------------------------------
+
+Test Case 2
+
+Test ID: TC-02
+Functionality Tested:* Student name validation (`isValidName`)
+Input:
+Student name = `Sahil123`
+
+Expected Output:
+The function should reject the name because it contains numeric characters.
+
+Actual Output:
+The student record was skipped and not stored.
+
+Test Report:
+Pass. The function correctly identified and rejected an invalid name.
+
+-----------------------------------------------------------------------------
+Test Case 3
+
+Test ID: TC-03
+Functionality Tested: Marks validation (`isValidMarks`)
+Input:
+Marks = `{78, 85, 75, 110, 90, 55}`
+
+Expected Output:
+The function should reject the record since one mark exceeds the allowed range (0–100).
+
+Actual Output:
+The student record was ignored and not included in result processing.
+
+Test Report:
+Pass. The function correctly handled invalid marks.
+
+-----------------------------------------------------------------------------
+
+Test Case 4
+
+Test ID: TC-04
+Functionality Tested: Result computation (`computeResult`)
+Input:
+Marks = `{70, 70, 70, 70, 70, 65}`
+
+Expected Output:
+Total marks, percentage, CGPA, and grade should be calculated correctly and the student should pass.
+
+Actual Output:
+Total, percentage, CGPA, and grade were computed correctly and displayed in the report.
+
+Test Report:
+Pass. The result computation logic works as expected.
+
+-----------------------------------------------------------------------------
+
+Test Case 5
+
+Test ID: TC-05
+Functionality Tested: Statistics generation (`Statistics`)
+Input:
+Array of valid student records
+
+Expected Output:
+The program should display class average, highest and lowest percentage along with corresponding student IDs, and grade distribution.
+
+Actual Output:
+All statistics were displayed correctly, including correct identification of highest and lowest scorers.
+
+Test Report:
+Pass. Statistics module produced correct and complete results.
+
+-----------------------------------------------------------------------------

@@ -1,27 +1,32 @@
 #include <string.h>
 #include <ctype.h>
-#include"validation.h"
+#include "validation.h"
 
-int isValidID(char id[], struct Students s[], int count) {
-    for (int i = 0; id[i]; i++)
+int isValidID(char id[], Student students[], int count) {
+    for (int i = 0; id[i] != '\0'; i++) {
         if (!isalnum(id[i]))
             return 0;
+    }
 
-    for (int i = 0; i < count; i++)
-        if (strcmp(id, s[i].id) == 0)
+    for (int j = 0; j < count; j++) {
+        if (strcmp(id, students[j].id) == 0)
             return 0;
-
+    }
     return 1;
 }
 
 int isValidName(char name[]) {
-    for (int i = 0; name[i]; i++)
-        if (!isalpha(name[i]))
+    for (int i = 0; name[i] != '\0'; i++) {
+        if (!isalpha(name[i]) && name[i] != ' ')
             return 0;
+    }
     return 1;
 }
 
-
-int isValidMarks(int m) {
-    return (m >= 0 && m <= 100);
+int isValidMarks(int marks[]) {
+    for (int i = 0; i < SUBJECTS; i++) {
+        if (marks[i] < 0 || marks[i] > 100)
+            return 0;
+    }
+    return 1;
 }

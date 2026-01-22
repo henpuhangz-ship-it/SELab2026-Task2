@@ -17,8 +17,8 @@ Logic
 2. Read the number of students
 3. For each student:
    - Read ID, Name, and Marks
-   - Invoke validation functions
-   - Invoke result computation module
+   - Calls validation functions
+   - Call result computation module
 4. Call report module to display results and statistics
 5. Close the input file
 
@@ -51,7 +51,7 @@ Output
 Module 3: Result Computation Module (result.c)
 
 Input
-- Marks of five subjects for a student
+- Marks of six subjects for a student
 
 Pre-condition
 - Marks must be validated before computation
@@ -79,11 +79,11 @@ Pre-condition
 Logic
 1. Display student details in a tabular format
 2. Calculate class average percentage
-3. Identify highest and lowest percentage
+3. Identify highest and lowest percentage and show ID
 4. Count number of students in each grade category
 
 Output
 - Tabular student result report
-- Class statistics and grade distribution
+- Class statistics and grade distribution chart
 
 

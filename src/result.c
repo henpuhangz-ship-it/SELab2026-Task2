@@ -1,17 +1,26 @@
 #include <string.h>
 #include "result.h"
 
-void calculateResult(struct Students *s) {
+void computeResult(Student *s) {
     s->total = 0;
-    for (int i = 0; i < SUBJECTS; i++)
-        s->total += s->marks[i];
+    int pass = 1;
 
-    s->percentage = s->total / 5.0;
-    assignGrade(s);
+    for (int i = 0; i < SUBJECTS; i++) {
+        s->total += s->marks[i];
+        if (s->marks[i] < 50)
+            pass = 0;
+    }
+
+    s->percentage = (s->total * 100.0) / (SUBJECTS * 100);
+    s->cgpa = s->percentage / 10.0;
+
+    if (!pass)
+        strcpy(s->grade, "F");
+    else
+        assignGrade(s);
 }
 
-
-void assignGrade(struct Students *s) {
+void assignGrade(Student *s) {
     float p = s->percentage;
 
     if (p >= 90) strcpy(s->grade, "O");

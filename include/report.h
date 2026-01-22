@@ -3,7 +3,7 @@
 
 #include "student.h"
 
-void report(struct Students s[], int n);
-void Stats(struct Students s[], int n);
+void Report(Student students[], int n);
+void Statistics(Student students[], int n);
 
 #endif

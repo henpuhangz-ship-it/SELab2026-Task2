@@ -1,6 +1,6 @@
 6
 
-24mcmt14	sahil	78 85 75 77 90 55
+24mcmt14     sahil	78 85 75 77 90 55
 24mcmt12     lake	75 80 65 60 65 55
 24mcmt16     krishna	80 50 55 69 75 66
 24mcmt17     vamshi	65 65 78 77 75 66

@@ -1,52 +1,47 @@
 #include <stdio.h>
 #include "student.h"
-#include "report.h"
-#include "result.h"
 #include "validation.h"
-
+#include "result.h"
+#include "report.h"
 
 int main() {
-    struct Students s[MAX];
-    int n;
     FILE *fp;
+    Student students[MAX_STUDENTS];
+    int count = 0, n;
 
     fp = fopen("students.txt", "r");
     if (fp == NULL) {
-        printf("Error opening file!\n");
+        printf("Error: Unable to open input file.\n");
         return 1;
     }
 
     fscanf(fp, "%d", &n);
 
+    if (n <= 0 || n > MAX_STUDENTS) {
+        printf("Invalid number of students.\n");
+        fclose(fp);
+        return 1;
+    }
+
     for (int i = 0; i < n; i++) {
+        Student temp;
 
-        fscanf(fp, "%s", s[i].id);
-        if (!isValidID(s[i].id, s, i)) {
-            printf("Invalid or Duplicate ID: %s\n", s[i].id);
-            return 1;
-        }
+        fscanf(fp, "%s %s", temp.id, temp.name);
+        for (int j = 0; j < SUBJECTS; j++)
+            fscanf(fp, "%d", &temp.marks[j]);
 
-        fscanf(fp, "%s", s[i].name);
-        if (!isValidName(s[i].name)) {
-            printf("Invalid Name: %s\n", s[i].name);
-            return 1;
-        }
+        if (!isValidID(temp.id, students, count)) continue;
+        if (!isValidName(temp.name)) continue;
+        if (!isValidMarks(temp.marks)) continue;
 
-        for (int j = 0; j < SUBJECTS; j++) {
-            fscanf(fp, "%d", &s[i].marks[j]);
-            if (!isValidMarks(s[i].marks[j])) {
-                printf("Invalid Marks for %s\n", s[i].name);
-                return 1;
-            }
-        }
-
-        calculateResult(&s[i]);
+        computeResult(&temp);
+        students[count++] = temp;
     }
 
     fclose(fp);
 
-    report(s, n);
-    Stats(s, n);
+    Report(students, count);
+    Statistics(students, count);
 
     return 0;
 }
